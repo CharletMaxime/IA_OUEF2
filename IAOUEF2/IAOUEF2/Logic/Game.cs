@@ -128,7 +128,8 @@ public class Game
     #region Methods
 
     /// <summary>
-    /// Formalisation des cartes
+
+    /// Utilise une carte de la main du joueur
     /// </summary>
     /// <example>
     /// Si une carte contient 45 d'attaque et qu'on l'utilise,
@@ -140,15 +141,12 @@ public class Game
         switch (card)
         {
             case TypeCard.SAVOIR:
-                players[playerNumber].KnowledgeScore += hand[card].Amount;
                 hand[card].Amount = 0;
                 break;
             case TypeCard.ATTAQUE:
-                players[playerNumber].AttackScore += hand[card].Amount;
                 hand[card].Amount = 0;
                 break;
             case TypeCard.DEFENSE:
-                players[playerNumber].DefenseScore += hand[card].Amount;
                 hand[card].Amount = 0;
                 break;
         }
