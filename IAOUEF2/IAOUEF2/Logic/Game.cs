@@ -133,7 +133,13 @@ public class Game
         this.expeditions[4] = new Card();
         this.expeditions[5] = new Card();
 
-     
+        this.hand = new Dictionary<TypeCard, Card>();
+        this.hand[TypeCard.SAVOIR] = new Card();
+        this.hand[TypeCard.SAVOIR].TypeCard = TypeCard.SAVOIR;
+        this.hand[TypeCard.ATTAQUE] = new Card();
+        this.hand[TypeCard.ATTAQUE].TypeCard = TypeCard.ATTAQUE;
+        this.hand[TypeCard.DEFENSE] = new Card();
+        this.hand[TypeCard.DEFENSE].TypeCard = TypeCard.DEFENSE;
 
     }
 
