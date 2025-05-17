@@ -19,6 +19,8 @@ public class Program
         message = ServerConnector.GetMessage();
         InfoUpdater infoUpdater = new InfoUpdater();
         infoUpdater.UpdateMonstre(game);
+        infoUpdater.UpdatePlayer(game);
+        infoUpdater.UpdateExpeditions(game);
         while (message != "FIN")
         {
             if (message.StartsWith("DEBUT_TOUR"))
