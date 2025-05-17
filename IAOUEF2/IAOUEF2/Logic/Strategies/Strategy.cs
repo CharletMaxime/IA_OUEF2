@@ -12,11 +12,11 @@ public abstract class Strategy
 
     #region Constructor
 
-    public abstract void PlayTurn();
 
     #endregion
 
     #region Methods
+    public abstract void PlayTurn();
 
     #endregion
 
