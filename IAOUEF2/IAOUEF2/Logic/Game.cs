@@ -147,19 +147,9 @@ public class Game
         this.hand[TypeCard.ATTAQUE].TypeCard = TypeCard.ATTAQUE;
         this.hand[TypeCard.DEFENSE] = new Card();
         this.hand[TypeCard.DEFENSE].TypeCard = TypeCard.DEFENSE;
-
-
-<<<<<<< Updated upstream
-        this.hand = new Dictionary<TypeCard, Card>();
-        this.hand[TypeCard.SAVOIR] = new Card();
-        this.hand[TypeCard.SAVOIR].TypeCard = TypeCard.SAVOIR;
-        this.hand[TypeCard.ATTAQUE] = new Card();
-        this.hand[TypeCard.ATTAQUE].TypeCard = TypeCard.ATTAQUE;
-        this.hand[TypeCard.DEFENSE] = new Card();
-        this.hand[TypeCard.DEFENSE].TypeCard = TypeCard.DEFENSE;
-=======
->>>>>>> Stashed changes
-
+        
+        this.Start();
+        this.RulesTurn();
     }
 
     #endregion
@@ -217,7 +207,7 @@ public class Game
     public void Start()
     {
         this.turn = 1;
-        this.phases = 1;
+        this.phases = 0;
         this.night = 0;
         this.isBloodMoon = false;
     }
@@ -227,6 +217,8 @@ public class Game
     /// </summary>
     public void RulesTurn()
     {
+        while(phases % 4 != 0) phases++;
+        
         //Gère le cas d'ajout d'une nuit
         if (phases % 4 == 0) night++;
 
@@ -238,6 +230,7 @@ public class Game
         {
             isBloodMoon = false;
             turn++;
+            phases = 1;
         }
     }
 

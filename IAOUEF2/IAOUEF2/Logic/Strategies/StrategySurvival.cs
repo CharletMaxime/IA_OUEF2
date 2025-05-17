@@ -8,16 +8,16 @@ public class StrategySurvival : Strategy
 
     #region Properties
 
+    
     #endregion
 
     #region Constructor
-
+    
     #endregion
 
     #region Methods
     public override void PlayTurn()
     {
-        
     }
     #endregion
 }

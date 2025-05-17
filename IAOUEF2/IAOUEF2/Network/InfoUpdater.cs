@@ -14,7 +14,6 @@ namespace IAOUEF2.Network
         public InfoUpdater() { }
 
 
-
         /// <summary>
         /// Mise à jour des infos des monstres
         /// </summary>
@@ -95,13 +94,11 @@ namespace IAOUEF2.Network
                 expednb++;
             }
         }
-
+        
         public void UpdateRedLadyDamage(Game game)
         {
             ServerConnector.SendMessage(Demande.DEGATS.ToString());
             game.RedLadyDamage = Convert.ToInt32(ServerConnector.GetMessage());
         }
-
-
     }
 }
