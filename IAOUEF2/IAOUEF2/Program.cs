@@ -17,6 +17,10 @@ public class Program
         game.PlayerNumber = Convert.ToInt32(welcomeMessage.Split('|')[1]);
         
         message = ServerConnector.GetMessage();
+        InfoUpdater infoUpdater = new InfoUpdater();
+        infoUpdater.UpdateMonstre(game);
+        infoUpdater.UpdatePlayer(game);
+        infoUpdater.UpdateExpeditions(game);
         while (message != "FIN")
         {
             if (message.StartsWith("DEBUT_TOUR"))

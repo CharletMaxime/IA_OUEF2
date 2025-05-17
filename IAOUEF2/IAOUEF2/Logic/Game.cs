@@ -116,11 +116,25 @@ public class Game
     public Game()
     {
         players = new Dictionary<int, Player>();
-        monsters = new Dictionary<int, Monster>();
+
+        this.players[0] = new Player();
+        this.players[1] = new Player();
+        this.players[2] = new Player();
+        this.players[3] = new Player();
+        this.monsters = new Dictionary<int, Monster>();
         this.monsters[0] = new Monster();
         this.monsters[1] = new Monster();
         this.monsters[2] = new Monster();
-        this.players[playerNumber] = new Player();
+        this.expeditions = new Dictionary<int, Card>();
+        this.expeditions[0] = new Card();
+        this.expeditions[1] = new Card();
+        this.expeditions[2] = new Card();
+        this.expeditions[3] = new Card();
+        this.expeditions[4] = new Card();
+        this.expeditions[5] = new Card();
+
+     
+
     }
 
     #endregion
