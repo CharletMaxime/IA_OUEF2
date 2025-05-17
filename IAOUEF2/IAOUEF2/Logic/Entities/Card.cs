@@ -2,12 +2,13 @@
 
 public class Card
 {
+
     /// <summary>
     /// Nom de la carte
     /// </summary>
     public string Name
     {
-        get
+    get
         {
             TypeCard typecard = TypeCard;
             switch (typecard)
@@ -38,4 +39,9 @@ public class Card
     /// Quel type de carte
     /// </summary>
     public TypeCard TypeCard { get; set; }
+
+    /// <summary>
+    /// Est ce que la carte est un malus
+    /// </summary>
+    public bool IsMalus { get; set ; }
 }
