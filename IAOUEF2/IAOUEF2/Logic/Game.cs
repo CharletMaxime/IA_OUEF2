@@ -33,20 +33,21 @@ public class Game
 
     #region Methods
 
+    /// <summary>
+    /// Utilise une carte de la main du joueur
+    /// </summary>
+    /// <param name="card"> type de la carte à utiliser</param>
     public void UseCards(TypeCard card)
     {
         switch (card)
         {
             case TypeCard.SAVOIR:
-                players[playerNumber].KnowledgeScore += hand[card].Amount;
                 hand[card].Amount = 0;
                 break;
             case TypeCard.ATTAQUE:
-                players[playerNumber].AttackScore += hand[card].Amount;
                 hand[card].Amount = 0;
                 break;
             case TypeCard.DEFENSE:
-                players[playerNumber].DefenseScore += hand[card].Amount;
                 hand[card].Amount = 0;
                 break;
         }
