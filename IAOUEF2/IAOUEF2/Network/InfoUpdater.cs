@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Action = IAOUEF2.Logic.Action;
 
 namespace IAOUEF2.Network
 {
@@ -42,7 +43,7 @@ namespace IAOUEF2.Network
         /// <param name="game">le jeu</param>
         public void UpdatePlayer(Game game)
         {
-            ServerConnector.SendMessage("JOUEURS");
+        ServerConnector.SendMessage(Demande.JOUEURS.ToString());
             string reponse = ServerConnector.GetMessage();
             string[] player = reponse.Split('|');
 
@@ -68,7 +69,7 @@ namespace IAOUEF2.Network
         /// <param name="game">le jeu</param>
         public void UpdateExpeditions (Game game)
         {
-            ServerConnector.SendMessage("PIOCHES");
+            ServerConnector.SendMessage(Demande.PIOCHES.ToString());
             string reponse = ServerConnector.GetMessage();
             string[] expeditions = reponse.Split('|');
 
@@ -93,6 +94,12 @@ namespace IAOUEF2.Network
                 game.Expeditions[expednb].Amount = Convert.ToInt32(expeditions[i + 1]);
                 expednb++;
             }
+        }
+
+        public void UpdateRedLadyDamage(Game game)
+        {
+            ServerConnector.SendMessage(Demande.DEGATS.ToString());
+            game.RedLadyDamage = Convert.ToInt32(ServerConnector.GetMessage());
         }
 
 
