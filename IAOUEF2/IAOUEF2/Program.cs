@@ -1,3 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using IAOUEF2.Network;
 
-Console.WriteLine("Hello, World!");
+public class Program
+{
+    static void Main(string[] args)
+    {
+        
+        ServerConnector.OpenConnection();
+
+        string message = ServerConnector.GetMessage();
+        ServerConnector.SendMessage("OUEF_2");
+        
+        ServerConnector.CloseConnection();
+    }
+}
