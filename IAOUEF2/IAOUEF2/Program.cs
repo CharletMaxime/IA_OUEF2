@@ -9,24 +9,35 @@ public class Program
     {
         Game game = new Game();
         ServerConnector.OpenConnection();
-        StrategySurvival strat = new StrategySurvival();
+        StrategyJuju strat = new StrategyJuju(game);
         string message = ServerConnector.GetMessage();
         ServerConnector.SendMessage("OUEF2");
         
         string welcomeMessage = ServerConnector.GetMessage();
         game.PlayerNumber = Convert.ToInt32(welcomeMessage.Split('|')[1]);
-        
-        message = ServerConnector.GetMessage();
         InfoUpdater infoUpdater = new InfoUpdater();
-        infoUpdater.UpdateMonstre(game);
-        infoUpdater.UpdatePlayer(game);
-        infoUpdater.UpdateExpeditions(game);
+
+        message = ServerConnector.GetMessage();
+
+        game.Start();
+        
         while (message != "FIN")
         {
             if (message.StartsWith("DEBUT_TOUR"))
             {
+                game.Phases =Convert.ToInt32( message.Split('|')[2]);
+                
+                infoUpdater.UpdatePlayer(game);
+                infoUpdater.UpdateMonstre(game);
+                infoUpdater.UpdateExpeditions(game);
                 strat.PlayTurn();
-            }
+                
+                
+                 
+
+            }                
+            message = ServerConnector.GetMessage();
+
         }
         
         ServerConnector.CloseConnection();

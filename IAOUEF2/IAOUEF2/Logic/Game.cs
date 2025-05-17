@@ -139,26 +139,26 @@ public class Game
         this.expeditions[3] = new Card();
         this.expeditions[4] = new Card();
         this.expeditions[5] = new Card();
-        this.redLadyDamage = 0;
+
+
         this.hand = new Dictionary<TypeCard, Card>();
         this.hand[TypeCard.SAVOIR] = new Card();
         this.hand[TypeCard.SAVOIR].TypeCard = TypeCard.SAVOIR;
+        this.hand[TypeCard.SAVOIR].IsMalus = false;
+        this.hand[TypeCard.SAVOIR].Amount = 0;
         this.hand[TypeCard.ATTAQUE] = new Card();
         this.hand[TypeCard.ATTAQUE].TypeCard = TypeCard.ATTAQUE;
+        this.hand[TypeCard.ATTAQUE].IsMalus = false;
+        this.hand[TypeCard.ATTAQUE].Amount = 0;
         this.hand[TypeCard.DEFENSE] = new Card();
         this.hand[TypeCard.DEFENSE].TypeCard = TypeCard.DEFENSE;
+        this.hand[TypeCard.DEFENSE].IsMalus = false;
+        this.hand[TypeCard.DEFENSE].Amount = 0;
 
 
-<<<<<<< Updated upstream
-        this.hand = new Dictionary<TypeCard, Card>();
-        this.hand[TypeCard.SAVOIR] = new Card();
-        this.hand[TypeCard.SAVOIR].TypeCard = TypeCard.SAVOIR;
-        this.hand[TypeCard.ATTAQUE] = new Card();
-        this.hand[TypeCard.ATTAQUE].TypeCard = TypeCard.ATTAQUE;
-        this.hand[TypeCard.DEFENSE] = new Card();
-        this.hand[TypeCard.DEFENSE].TypeCard = TypeCard.DEFENSE;
-=======
->>>>>>> Stashed changes
+
+
+
 
     }
 
@@ -197,7 +197,9 @@ public class Game
     /// <param name="card">La clé déterminant la carte à changer</param>
     public void Draw(int card)
     {
+
         ServerConnector.SendMessage(Action.PIOCHER.ToString()+'|'+card);
+
         this.hand[expeditions[card].TypeCard].Amount += expeditions[card].Amount;
     }
     
@@ -238,6 +240,7 @@ public class Game
         {
             isBloodMoon = false;
             turn++;
+
         }
     }
 
