@@ -12,6 +12,7 @@ public class Game
     private Dictionary<int, Card> expeditions;
     private Dictionary<TypeCard, Card> hand;
     private int playerNumber;
+    private int redLadyDamage;
 
     #endregion
 
@@ -57,6 +58,12 @@ public class Game
     {
         get => playerNumber;
         set => playerNumber = value;
+    }
+
+    public int RedLadyDamage
+    {
+        get => redLadyDamage;
+        set => redLadyDamage = value;
     }
 
     #endregion
@@ -132,7 +139,7 @@ public class Game
         this.expeditions[3] = new Card();
         this.expeditions[4] = new Card();
         this.expeditions[5] = new Card();
-
+        this.redLadyDamage = 0;
         this.hand = new Dictionary<TypeCard, Card>();
         this.hand[TypeCard.SAVOIR] = new Card();
         this.hand[TypeCard.SAVOIR].TypeCard = TypeCard.SAVOIR;
@@ -140,6 +147,18 @@ public class Game
         this.hand[TypeCard.ATTAQUE].TypeCard = TypeCard.ATTAQUE;
         this.hand[TypeCard.DEFENSE] = new Card();
         this.hand[TypeCard.DEFENSE].TypeCard = TypeCard.DEFENSE;
+
+
+<<<<<<< Updated upstream
+        this.hand = new Dictionary<TypeCard, Card>();
+        this.hand[TypeCard.SAVOIR] = new Card();
+        this.hand[TypeCard.SAVOIR].TypeCard = TypeCard.SAVOIR;
+        this.hand[TypeCard.ATTAQUE] = new Card();
+        this.hand[TypeCard.ATTAQUE].TypeCard = TypeCard.ATTAQUE;
+        this.hand[TypeCard.DEFENSE] = new Card();
+        this.hand[TypeCard.DEFENSE].TypeCard = TypeCard.DEFENSE;
+=======
+>>>>>>> Stashed changes
 
     }
 
@@ -178,7 +197,14 @@ public class Game
     /// <param name="card">La clé déterminant la carte à changer</param>
     public void Draw(int card)
     {
+        ServerConnector.SendMessage(Action.PIOCHER.ToString()+'|'+card);
         this.hand[expeditions[card].TypeCard].Amount += expeditions[card].Amount;
+    }
+    
+    
+    public void Attack(int monsterNumber)
+    {
+        ServerConnector.SendMessage(Action.ATTAQUER.ToString()+'|'+monsterNumber);
     }
 
     #endregion
