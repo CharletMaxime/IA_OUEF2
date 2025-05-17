@@ -7,5 +7,6 @@ public enum Demande
     JOUEURS,
     MOI,
     MONSTRES,
-    PIOCHES
+    PIOCHES,
+    DEGATS
 }
