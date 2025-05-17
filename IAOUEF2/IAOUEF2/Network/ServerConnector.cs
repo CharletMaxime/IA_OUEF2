@@ -41,7 +41,9 @@ public class ServerConnector
     /// <returns>Le message</returns>
     public static string GetMessage()
     {
-        return Instance.reader.ReadLine() ?? string.Empty;
+        string message = Instance.reader.ReadLine();
+        Console.WriteLine(">> " + message);
+        return message;
     }
 
     /// <summary>

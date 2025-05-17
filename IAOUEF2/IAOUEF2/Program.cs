@@ -8,7 +8,9 @@ public class Program
         ServerConnector.OpenConnection();
 
         string message = ServerConnector.GetMessage();
-        ServerConnector.SendMessage("OUEF_2");
+        ServerConnector.SendMessage("OUEF2");
+        
+        ServerConnector.GetMessage();
         
         ServerConnector.CloseConnection();
     }
