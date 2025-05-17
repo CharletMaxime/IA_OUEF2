@@ -77,7 +77,7 @@ namespace IAOUEF2.Network
             {
                 switch(expeditions[i])
 
-                    {
+                {
                     case "SAVOIR":
                         game.Expeditions[expednb].TypeCard = TypeCard.SAVOIR;
                         break;

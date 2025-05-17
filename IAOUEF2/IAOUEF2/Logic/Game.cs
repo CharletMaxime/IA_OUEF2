@@ -186,6 +186,7 @@ public class Game
     /// <param name="card">La clé déterminant la carte à changer</param>
     public void Draw(int card)
     {
+        ServerConnector.SendMessage(Action.PIOCHER.ToString() + '|' + card);
         this.hand[expeditions[card].TypeCard].Amount += expeditions[card].Amount;
     }
 
@@ -220,6 +221,7 @@ public class Game
         {
             isBloodMoon = false;
             turn++;
+
         }
     }
 

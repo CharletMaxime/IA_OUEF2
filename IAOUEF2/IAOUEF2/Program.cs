@@ -15,7 +15,8 @@ public class Program
         
         string welcomeMessage = ServerConnector.GetMessage();
         game.PlayerNumber = Convert.ToInt32(welcomeMessage.Split('|')[1]);
-        
+        InfoUpdater infoUpdater = new InfoUpdater();
+
         message = ServerConnector.GetMessage();
 
         game.Start();
@@ -24,7 +25,17 @@ public class Program
         {
             if (message.StartsWith("DEBUT_TOUR"))
             {
+                if (game.Phases>16)
+                {
+                    game.Phases = 0;
+                }
+                infoUpdater.UpdatePlayer(game);
+                infoUpdater.UpdateMonstre(game);
+                infoUpdater.UpdateExpeditions(game);
                 strat.PlayTurn();
+                
+                
+                 game.Phases++;
 
             }                
             message = ServerConnector.GetMessage();

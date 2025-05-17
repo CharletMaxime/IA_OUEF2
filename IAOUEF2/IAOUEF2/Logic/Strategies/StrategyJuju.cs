@@ -25,9 +25,9 @@ namespace IAOUEF2.Logic.Strategies
 
         public override void PlayTurn()
         {
-            infoUpdater.UpdateMonstre(game);
-            infoUpdater.UpdatePlayer(game);
-            infoUpdater.UpdateExpeditions(game);
+            ServerConnector.SendMessage("DEGATS");
+            int degats = Convert.ToInt32(ServerConnector.GetMessage());
+
 
             int minHpMonster = 0;
             int[] monstersHp = [game.Monsters[0].Hp, game.Monsters[1].Hp, game.Monsters[2].Hp];
@@ -61,26 +61,71 @@ namespace IAOUEF2.Logic.Strategies
                 }
             }
 
-            if (game.Phases % 4 == 0)
+            if (game.Phases == 16)
             {
-
-            }
-            else if (game.Phases!=17)
-            {
-                ServerConnector.SendMessage("DEGATS");
-                if (game.Hand[TypeCard.DEFENSE].Amount < Convert.ToInt32(ServerConnector.GetMessage()))
+                Console.WriteLine("Je suis dans le tour 16");
+                if (game.Hand[TypeCard.DEFENSE].Amount > degats + 15 && game.Players[game.PlayerNumber].DefenseScore < degats + 15)
                 {
-                    Console.WriteLine(game.Hand[TypeCard.DEFENSE].Amount);
-                    if (game.Expeditions[0].Amount > game.Expeditions[3].Amount)
-                    {
-                        ServerConnector.SendMessage("PIOCHER|0");
-                        game.Draw(0);
-                    }
-                    else ServerConnector.SendMessage("PIOCHER|0");
-                    game.Draw(0);
+                    ServerConnector.SendMessage("UTILISER|DEFENSE");
+                    game.UseCards(TypeCard.DEFENSE);
+                    game.Draw(2);
+                }
+                else if (game.Players[game.PlayerNumber].Hp > degats)
+                {
+                    game.Draw(2);
 
                 }
-                
+                else
+                {
+                    ServerConnector.SendMessage("UTILISER|SAVOIR");
+                    game.UseCards(TypeCard.SAVOIR);
+                    game.Draw(2);
+
+                }
+            }
+
+            else if (game.Phases % 4 == 0 && game.Phases!=0)
+            {
+                if (game.Hand[TypeCard.ATTAQUE].Amount >= game.Monsters[minHpMonster].Hp)
+                {
+                    ServerConnector.SendMessage("UTILISER|ATTAQUE");
+                    game.UseCards(TypeCard.ATTAQUE);
+                    ServerConnector.SendMessage("ATTAQUER|"+ minHpMonster);
+                }
+                else
+                {
+                    game.Draw(2);
+                    
+                }
+            }
+            else if (game.Phases!=16)
+            {
+                if (game.Hand[TypeCard.DEFENSE].Amount < degats+15)
+                {
+                    if (game.Expeditions[0].Amount > game.Expeditions[3].Amount)
+                    {
+                        game.Draw(0);
+                    }
+                    else
+                    {
+                        game.Draw(3);
+                    }
+
+                }
+                else if (game.Hand[TypeCard.ATTAQUE].Amount < game.Monsters[minHpMonster].Hp)
+                {
+
+                    if (game.Expeditions[1].Amount > game.Expeditions[4].Amount)
+                    {
+                        game.Draw(1);
+                    }
+                    else
+                    {
+                        game.Draw(4);
+                    }
+                }
+                else game.Draw(2);
+
             }
 
         }
