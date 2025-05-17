@@ -28,6 +28,10 @@ public class Game
     {
         players = new Dictionary<int, Player>();
         this.players[playerNumber] = new Player();
+        this.monsters = new Dictionary<int, Monster>();
+        this.monsters[0] = new Monster();
+        this.monsters[1] = new Monster();
+        this.monsters[2] = new Monster();
     }
     #endregion
 
