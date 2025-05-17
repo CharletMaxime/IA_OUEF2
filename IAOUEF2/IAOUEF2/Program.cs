@@ -25,17 +25,15 @@ public class Program
         {
             if (message.StartsWith("DEBUT_TOUR"))
             {
-                if (game.Phases>16)
-                {
-                    game.Phases = 0;
-                }
+                game.Phases =Convert.ToInt32( message.Split('|')[2]);
+                
                 infoUpdater.UpdatePlayer(game);
                 infoUpdater.UpdateMonstre(game);
                 infoUpdater.UpdateExpeditions(game);
                 strat.PlayTurn();
                 
                 
-                 game.Phases++;
+                 
 
             }                
             message = ServerConnector.GetMessage();

@@ -61,7 +61,7 @@ namespace IAOUEF2.Logic.Strategies
                 }
             }
 
-            if (game.Phases == 16)
+            if (game.Phases == 15)
             {
                 Console.WriteLine("Je suis dans le tour 16");
                 if (game.Hand[TypeCard.DEFENSE].Amount > degats + 15 && game.Players[game.PlayerNumber].DefenseScore < degats + 15)
@@ -84,7 +84,7 @@ namespace IAOUEF2.Logic.Strategies
                 }
             }
 
-            else if (game.Phases % 4 == 0 && game.Phases!=0)
+            else if (game.Phases == 3 || game.Phases==7 || game.Phases==11)
             {
                 if (game.Hand[TypeCard.ATTAQUE].Amount >= game.Monsters[minHpMonster].Hp)
                 {
